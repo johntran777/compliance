@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Non-Compliance Costs | John Tran</title>
+<meta name="description" content="Enter a company's revenue to see its GDPR and EU AI Act fine ceilings, compare HIPAA penalty tiers, start a breach-notification clock, and see what the biggest GDPR fines were for.">
+<meta name="author" content="John Tran">
+<meta property="og:type" content="website">
+<meta property="og:title" content="What non-compliance costs">
+<meta property="og:description" content="Fine ceilings, HIPAA tiers, breach deadlines and the biggest GDPR fines, in one interactive page.">
+<meta property="og:url" content="https://johntran777.github.io/compliance/part-1/">
+<meta property="og:image" content="https://johntran777.github.io/compliance/part-1/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<style>[hidden]{display:none!important} img{max-width:100%}</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a single reading column of "exhibits", each a tool with its statute cited in the margin line above it. */
+:root{
+  --bg:#f4f5f7; --surface:#ffffff; --fg:#121722; --muted:#5a6272; --faint:#8a91a0;
+  --line:#dde1e8; --grid:#e8ebf0; --accent:#2a6fd6; --accent-soft:#e6effb; --bar:#b9bec8;
+  --warn:#b4540f; --good:#1d7a3e;
+  --display:'Archivo','Arial Narrow',system-ui,sans-serif;
+  --body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1117; --surface:#161a22; --fg:#e8ebf0; --muted:#a6adbb; --faint:#7c8494;
+  --line:#2a303b; --grid:#222833; --accent:#5b9cf0; --accent-soft:#1a2a42; --bar:#4a5161;
+  --warn:#e08a4a; --good:#4cbf72; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1117; --surface:#161a22; --fg:#e8ebf0; --muted:#a6adbb; --faint:#7c8494;
+  --line:#2a303b; --grid:#222833; --accent:#5b9cf0; --accent-soft:#1a2a42; --bar:#4a5161;
+  --warn:#e08a4a; --good:#4cbf72; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:880px;margin:0 auto}
+header.top{padding-block:48px 28px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-stretch:85%;font-weight:800;font-size:clamp(34px,6vw,56px);line-height:1.02;letter-spacing:-.01em;margin:10px 0 14px;text-wrap:balance}
+.lead{font-size:18px;color:var(--muted);max-width:62ch;margin:0}
+.byline{margin-top:18px;font-size:14px;color:var(--faint)}
+.byline b{color:var(--fg);font-weight:600}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+nav.toc a{font-size:13.5px;color:var(--fg);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:var(--surface)}
+nav.toc a:hover{border-color:var(--accent);color:var(--accent)}
+section.ex{padding-block:40px 8px}
+.cite{font-family:var(--mono);font-size:12px;color:var(--faint);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.cite span.num{color:var(--accent);font-weight:500}
+h2{font-family:var(--display);font-stretch:90%;font-weight:750;font-size:clamp(24px,3.6vw,32px);line-height:1.12;margin:6px 0 10px;text-wrap:balance}
+p.intro{color:var(--muted);max-width:64ch;margin:0 0 18px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
+.controls{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:flex-end;margin-bottom:18px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+label{font-size:13px;font-weight:600;color:var(--muted)}
+input[type=number],input[type=datetime-local],select{font:500 15px var(--mono);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;min-width:0;max-width:100%}
+input[type=range]{width:min(320px,100%);accent-color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+button.chip{font:500 13px var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+button.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+button.chip:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.answer{font-size:17px;margin:0 0 16px;max-width:66ch}
+.answer strong{font-family:var(--display);font-stretch:90%;font-size:22px;color:var(--accent)}
+.rows{display:grid;gap:10px}
+.row{display:grid;grid-template-columns:minmax(150px,210px) 1fr;gap:12px;align-items:center}
+.row .name{font-weight:600;font-size:14.5px;line-height:1.3}
+.row .name small{display:block;font-weight:400;color:var(--muted);font-size:12.5px}
+.track{position:relative;height:28px;min-width:0}
+.fill{position:absolute;left:0;top:3px;height:22px;border-radius:3px;background:var(--bar);transition:width .35s ease}
+.fill.pct{background:var(--accent)}
+.val{position:absolute;top:4px;font:500 14px var(--mono);white-space:nowrap;transition:left .35s ease}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted);margin-top:14px}
+.sw{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.note{font-size:13px;color:var(--faint);margin-top:12px;max-width:70ch}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin-bottom:16px}
+.tier{text-align:left;font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer}
+.tier b{display:block;font-size:14px}
+.tier span{font-size:12.5px;color:var(--muted)}
+.tier[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:6px}
+.stat{border-top:2px solid var(--line);padding-top:8px}
+.stat.key{border-top-color:var(--accent)}
+.stat .k{font-size:12.5px;color:var(--muted)}
+.stat .v{font:600 22px var(--mono);font-variant-numeric:tabular-nums;margin-top:2px}
+.clock{overflow-x:auto}
+.deadlines{display:grid;gap:0;margin-top:4px}
+.dl{display:grid;grid-template-columns:minmax(150px,220px) 1fr auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--grid)}
+.dl:first-child{border-top:0}
+.dl .who{font-size:12.5px;color:var(--muted);display:block;font-weight:400}
+.dl .rule{font-weight:600;font-size:14.5px}
+.dl .when{font:500 14px var(--mono);text-align:right;white-space:nowrap}
+.dl .bar{height:10px;border-radius:5px;background:var(--grid);position:relative;min-width:0}
+.dl .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:var(--bar)}
+.dl.soon .bar i{background:var(--accent)}
+.dl.soon .when{color:var(--accent)}
+.status{font-size:12px;font-family:var(--mono);display:block;color:var(--faint)}
+.chartbox{overflow-x:auto}
+svg text{font-family:var(--body)}
+.tip{position:fixed;pointer-events:none;background:var(--fg);color:var(--bg);font-size:13px;padding:8px 10px;border-radius:6px;max-width:260px;line-height:1.35;z-index:5}
+table{border-collapse:collapse;width:100%;font-size:14px}
+.tablewrap{overflow-x:auto}
+th,td{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--grid);vertical-align:top}
+th{font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--faint);font-weight:500}
+td.num{font-family:var(--mono);white-space:nowrap}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.card h3{font-family:var(--display);font-stretch:90%;font-size:22px;margin:0 0 4px}
+.card .sub{color:var(--muted);margin:0 0 14px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 24px}
+.facts div{min-width:0}
+.facts dt{font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--faint)}
+.facts dd{margin:2px 0 0;font-size:15px}
+.sources{font-size:13.5px;color:var(--muted)}
+.sources li{margin-bottom:4px}
+.sources a{color:var(--accent)}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
+@media (max-width:560px){
+  .row{grid-template-columns:1fr}
+  .dl{grid-template-columns:1fr auto}
+  .dl .bar{grid-column:1 / -1;order:3}
+}
+@media (prefers-reduced-motion:reduce){.fill,.val{transition:none}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Companion to my article on compliance</div>
+  <h1>What non-compliance costs</h1>
+  <p class="lead">Put in a company's revenue and see its fine ceilings. Start a breach clock and see every deadline it sets. Then look at what the biggest privacy fines were actually for.</p>
+  <div class="byline"><b>John Tran</b> · Figures as of October 2026 · Not legal advice</div>
+  <nav class="toc" aria-label="Sections">
+    <a href="#ceilings">Fine ceilings</a><a href="#hipaa">HIPAA tiers</a><a href="#clock">Breach clock</a><a href="#fines">Biggest fines</a><a href="#rules">Rules at a glance</a><a href="#sources">Sources</a>
+  </nav>
+</header>
+
+<!-- 1. Ceiling calculator -->
+<section class="ex" id="ceilings">
+  <div class="cite"><span class="num">Sources</span><span>GDPR Art. 83 · EU AI Act Art. 99 · LGPD Art. 52</span></div>
+  <h2>How high can the fine go for your company?</h2>
+  <p class="intro">The European rules set a fixed amount or a share of worldwide annual revenue, whichever is higher. Move the slider and watch where the percentage takes over.</p>
+  <div class="panel">
+    <div class="controls">
+      <div class="field">
+        <label for="rev">Worldwide annual revenue (€ millions)</label>
+        <input type="number" id="rev" min="1" max="500000" step="1" value="2000">
+      </div>
+      <div class="field">
+        <label for="revslider">Drag to explore</label>
+        <input type="range" id="revslider" min="0" max="1000" step="1" aria-label="Revenue slider">
+      </div>
+      <div class="field">
+        <label>Examples</label>
+        <div class="chips" id="presets">
+          <button class="chip" data-v="20">€20M startup</button>
+          <button class="chip" data-v="500">€500M</button>
+          <button class="chip" data-v="2000">€2B</button>
+          <button class="chip" data-v="50000">€50B</button>
+          <button class="chip" data-v="150000">€150B</button>
+        </div>
+      </div>
+    </div>
+    <p class="answer" id="ceilAnswer"></p>
+    <div class="rows" id="ceilRows"></div>
+    <div class="legend"><span><i class="sw" style="background:var(--accent)"></i>The percentage applies</span><span><i class="sw" style="background:var(--bar)"></i>The fixed amount applies</span></div>
+    <div class="controls" style="margin-top:22px;margin-bottom:8px">
+      <div class="field">
+        <label for="brrev">Revenue in Brazil (R$ millions), for LGPD</label>
+        <input type="number" id="brrev" min="0" step="1" value="800">
+      </div>
+      <p class="answer" id="lgpdAnswer" style="margin:0 0 4px"></p>
+    </div>
+    <p class="note">The GDPR's higher tier covers core principles, people's rights and international transfers; the lower tier covers duties such as security and breach notice. Under the AI Act, small and medium companies get the lower of the two amounts, not the higher. LGPD fines are capped per violation, so several violations can add up.</p>
+  </div>
+</section>
+
+<!-- 2. HIPAA tiers -->
+<section class="ex" id="hipaa">
+  <div class="cite"><span class="num">Sources</span><span>45 CFR 160.404 · HHS inflation adjustment effective Jan 28, 2026</span></div>
+  <h2>HIPAA fines depend on what you knew</h2>
+  <p class="intro">HIPAA sorts violations into four tiers by culpability. Pick a tier and a number of violations of the same requirement in one year.</p>
+  <div class="panel">
+    <div class="tiers" id="tiers" role="group" aria-label="HIPAA penalty tier"></div>
+    <div class="controls">
+      <div class="field">
+        <label for="viol">Violations of one requirement in a calendar year</label>
+        <input type="range" id="viol" min="1" max="200" value="25">
+      </div>
+      <div class="field"><label>&nbsp;</label><div class="cite" style="font-size:14px;color:var(--fg)" id="violOut"></div></div>
+    </div>
+    <div class="stats" id="hipaaStats"></div>
+    <p class="note">The annual cap applies per identical provision, so a single breach that violates several requirements can carry several caps. HHS has used a 2019 enforcement policy with lower annual caps for the first three tiers; both caps are shown. Criminal penalties are separate: up to $250,000 and 10 years in prison when information is obtained to sell or for harm.</p>
+  </div>
+</section>
+
+<!-- 3. Breach clock -->
+<section class="ex" id="clock">
+  <div class="cite"><span class="num">Sources</span><span>GDPR Art. 33 · Visa · ANPD Res. 15/2024 · SEC 8-K Item 1.05 · Cal. SB 446 · 45 CFR 164.404</span></div>
+  <h2>Start the breach clock</h2>
+  <p class="intro">Set the moment your team discovers a breach. Each rule that applies to you starts its own deadline from there.</p>
+  <div class="panel">
+    <div class="controls">
+      <div class="field">
+        <label for="disc">Breach discovered</label>
+        <input type="datetime-local" id="disc">
+      </div>
+      <div class="field">
+        <label>Quick picks</label>
+        <div class="chips">
+          <button class="chip" id="nowBtn">Right now</button>
+          <button class="chip" id="friBtn">Friday 5:00 p.m.</button>
+        </div>
+      </div>
+    </div>
+    <p class="answer" id="clockAnswer"></p>
+    <div class="clock"><div class="deadlines" id="deadlines"></div></div>
+    <p class="note">Business days skip weekends but not public holidays. The SEC clock starts when a public company decides the incident is material, which here is assumed to be the moment of discovery. Visa expects notice to your bank and Visa immediately; the date shown is when your findings are due.</p>
+  </div>
+</section>
+
+<!-- 4. Biggest fines -->
+<section class="ex" id="fines">
+  <div class="cite"><span class="num">Sources</span><span>EU data protection authorities, 2021 to 2025</span></div>
+  <h2>What the ten biggest GDPR fines were for</h2>
+  <p class="intro">Only two of the ten followed a breach or a leak. Filter by cause to see where the money went.</p>
+  <div class="panel">
+    <div class="chips" id="cats" style="margin-bottom:14px"></div>
+    <p class="answer" id="finesAnswer"></p>
+    <div class="chartbox"><svg id="fineChart" role="img" aria-label="Ten biggest GDPR fines by cause" width="100%"></svg></div>
+    <h3 style="font-family:var(--display);font-stretch:90%;font-size:19px;margin:26px 0 8px">Big privacy penalties outside the GDPR</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Company</th><th>Year</th><th>Who</th><th>Amount</th><th>What for</th></tr></thead>
+      <tbody>
+        <tr><td>Facebook</td><td>2019</td><td>U.S. FTC</td><td class="num">$5B</td><td>Privacy failures after Cambridge Analytica</td></tr>
+        <tr><td>Meta</td><td>2024</td><td>Texas</td><td class="num">$1.4B</td><td>Capturing biometric data without consent</td></tr>
+        <tr><td>Google</td><td>2025</td><td>Texas</td><td class="num">$1.375B</td><td>Tracking location and biometric data</td></tr>
+        <tr><td>Anthem</td><td>2018</td><td>HHS (HIPAA)</td><td class="num">$16M</td><td>Breach affecting 78.8 million people; still the largest HIPAA settlement</td></tr>
+        <tr><td>General Motors</td><td>2026</td><td>California (CCPA)</td><td class="num">$12.75M</td><td>Selling drivers' location data without consent</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">The fine is often the smallest part of the bill. IBM's 2025 report puts the average U.S. breach at $10.22 million, and healthcare has been the costliest industry for 14 years in a row.</p>
+  </div>
+</section>
+
+<!-- 5. Rules at a glance -->
+<section class="ex" id="rules">
+  
+  <h2>The rules at a glance</h2>
+  <div class="panel">
+    <div class="tabs" id="ruleTabs" role="tablist" aria-label="Rules"></div>
+    <div class="card" id="ruleCard" role="tabpanel"></div>
+  </div>
+</section>
+
+<section class="ex" id="sources">
+  <h2 style="font-size:22px">Sources</h2>
+  <ul class="sources">
+    <li><a href="https://prospyrmed.com/blog/post/hhs-raises-hipaa-violation-penalties-effective-january-28-2026" target="_blank" rel="noopener">HIPAA penalty amounts effective January 28, 2026</a></li>
+    <li><a href="https://ai-act-browser.ch.innoq.io/article/99" target="_blank" rel="noopener">EU AI Act, Article 99</a> and <a href="https://www.mondaq.com/eu-digital-omnibus-on-ai-enters-into-force/1825722" target="_blank" rel="noopener">the Digital Omnibus on AI (2026)</a></li>
+    <li><a href="https://www.dlapiper.com/en/insights/publications/2026/01/dla-piper-gdpr-fines-and-data-breach-survey-january-2026" target="_blank" rel="noopener">DLA Piper GDPR Fines and Data Breach Survey, January 2026</a></li>
+    <li><a href="https://termly.io/resources/articles/biggest-gdpr-fines/" target="_blank" rel="noopener">Termly, biggest GDPR fines (March 2026)</a> and <a href="https://www.irishtimes.com/business/2025/01/21/data-protection-watchdogs-impose-12bn-in-fines-in-2024/" target="_blank" rel="noopener">Irish Times on 2024 fines</a></li>
+    <li><a href="https://www.irishlegal.com/articles/tiktok-fined-eur530m-over-data-transfers-to-china" target="_blank" rel="noopener">TikTok fined €530 million (2025)</a></li>
+    <li><a href="https://cppa.ca.gov/announcements/2024/20241217.html" target="_blank" rel="noopener">California Privacy Protection Agency, 2025 CCPA amounts</a> and <a href="https://www.dataprotectionreport.com/2025/11/california-tightens-data-breach-notification-timelines-imposes-30-day-notice-requirement/" target="_blank" rel="noopener">SB 446 30-day breach notice</a></li>
+    <li><a href="https://www.mattosfilho.com.br/en/unico/resolution-security-incident/" target="_blank" rel="noopener">ANPD Resolution 15/2024 on incident reporting</a></li>
+    <li><a href="https://usa.visa.com/dam/VCOM/global/support-legal/documents/visa-bulletin-data-compromise-reporting-requirements.pdf" target="_blank" rel="noopener">Visa data compromise reporting requirements</a></li>
+    <li><a href="https://www.hipaajournal.com/average-cost-of-a-healthcare-data-breach/" target="_blank" rel="noopener">IBM Cost of a Data Breach 2025, via HIPAA Journal</a> and <a href="https://www.hipaajournal.com/hipaa-violation-fines/" target="_blank" rel="noopener">HIPAA Journal's penalty list</a></li>
+    <li><a href="https://www.techtarget.com/healthtechsecurity/news/366628716/Change-Healthcare-data-breach-victim-count-rises-to-193-million" target="_blank" rel="noopener">Change Healthcare breach count (192.7 million)</a></li>
+    <li><a href="https://www.enzuzo.com/blog/biggest-data-breach-fines" target="_blank" rel="noopener">Enzuzo, U.S. privacy penalties</a> and <a href="https://secureframe.com/blog/pci-history" target="_blank" rel="noopener">Secureframe, PCI DSS history</a></li>
+  </ul>
+  <footer>Compliance series, part 1 · John Tran · This page explains public rules and figures. It isn't legal advice; check with your counsel for your situation.</footer>
+</section>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const eur = v => v >= 1e9 ? '€' + (v/1e9).toFixed(v >= 1e10 ? 1 : 2).replace(/\.?0+$/,'') + 'B' : '€' + (v/1e6).toLocaleString('en-US',{maximumFractionDigits: v < 1e8 ? 1 : 0}) + 'M';
+  const usd = v => '$' + Math.round(v).toLocaleString('en-US');
+  const brl = v => 'R$' + (v/1e6).toLocaleString('en-US',{maximumFractionDigits:1}) + 'M';
+
+  /* ---------- Section 1: ceilings ---------- */
+  const rules = [
+    {name:'GDPR, higher tier', sub:'principles, rights, transfers', fixed:20e6, pct:.04},
+    {name:'GDPR, lower tier', sub:'security, breach notice', fixed:10e6, pct:.02},
+    {name:'EU AI Act, banned practices', sub:'Art. 5', fixed:35e6, pct:.07},
+    {name:'EU AI Act, other duties', sub:'high-risk, transparency', fixed:15e6, pct:.03},
+    {name:'EU AI Act, false information', sub:'to authorities', fixed:7.5e6, pct:.01}
+  ];
+  const rev = $('#rev'), slider = $('#revslider');
+  const toSlider = m => Math.round(Math.log10(m) / Math.log10(500000) * 1000);
+  const fromSlider = s => Math.max(1, Math.round(Math.pow(10, s/1000*Math.log10(500000))));
+  const rowsEl = $('#ceilRows');
+  rowsEl.innerHTML = rules.map((r,i) => `<div class="row"><div class="name">${r.name}<small>${r.sub} · ${eur(r.fixed)} or ${Math.round(r.pct*100)}%</small></div><div class="track"><div class="fill" id="f${i}"></div><div class="val" id="v${i}"></div></div></div>`).join('');
+  function renderCeil(){
+    let m = Math.max(1, Math.min(500000, Number(rev.value) || 1));
+    const R = m * 1e6;
+    const vals = rules.map(r => ({v: Math.max(r.fixed, r.pct*R), pct: r.pct*R > r.fixed}));
+    const max = Math.max(...vals.map(x => x.v));
+    vals.forEach((x,i) => {
+      const w = x.v / max * 72;
+      const f = $('#f'+i), v = $('#v'+i);
+      f.style.width = w + '%'; f.className = 'fill' + (x.pct ? ' pct' : '');
+      v.style.left = `calc(${w}% + 8px)`; v.textContent = eur(x.v);
+    });
+    const g = vals[0];
+    $('#ceilAnswer').innerHTML = `At <b>${eur(R)}</b> in revenue, the GDPR ceiling is <strong>${eur(g.v)}</strong>. ` + (g.pct ? `The 4% rule is in charge, because 4% of revenue is more than €20 million.` : `The fixed €20 million applies until revenue passes €500 million.`) + ` All but the last of these ceilings switch from the fixed amount to the percentage at €500 million in revenue; the false-information tier switches at €750 million.`;
+    document.querySelectorAll('#presets .chip').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.v) === m)));
+  }
+  rev.addEventListener('input', () => { slider.value = toSlider(Math.max(1, Number(rev.value)||1)); renderCeil(); });
+  slider.addEventListener('input', () => { rev.value = fromSlider(Number(slider.value)); renderCeil(); });
+  document.querySelectorAll('#presets .chip').forEach(b => b.addEventListener('click', () => { rev.value = b.dataset.v; slider.value = toSlider(Number(b.dataset.v)); renderCeil(); }));
+  slider.value = toSlider(2000); renderCeil();
+  const br = $('#brrev');
+  function renderLgpd(){
+    const R = Math.max(0, Number(br.value)||0) * 1e6, f = Math.min(.02*R, 50e6);
+    $('#lgpdAnswer').innerHTML = `LGPD ceiling per violation: <strong>${brl(f)}</strong>` + (.02*R >= 50e6 ? ' (the R$50 million cap applies)' : ' (2% of Brazil revenue)');
+  }
+  br.addEventListener('input', renderLgpd); renderLgpd();
+
+  /* ---------- Section 2: HIPAA ---------- */
+  const tiers = [
+    {name:'Tier 1', desc:'Didn’t know, and couldn’t have', min:145, max:73011, cap:2190294, dcap:36505.5},
+    {name:'Tier 2', desc:'Reasonable cause', min:1461, max:73011, cap:2190294, dcap:146053},
+    {name:'Tier 3', desc:'Willful neglect, fixed within 30 days', min:14602, max:73011, cap:2190294, dcap:365052},
+    {name:'Tier 4', desc:'Willful neglect, not fixed', min:73011, max:2190294, cap:2190294, dcap:2190294}
+  ];
+  let tierIdx = 1;
+  $('#tiers').innerHTML = tiers.map((t,i) => `<button class="tier" data-i="${i}" aria-pressed="${i===tierIdx}"><b>${t.name}</b><span>${t.desc}</span></button>`).join('');
+  document.querySelectorAll('.tier').forEach(b => b.addEventListener('click', () => { tierIdx = Number(b.dataset.i); document.querySelectorAll('.tier').forEach(x => x.setAttribute('aria-pressed', String(x===b))); renderHipaa(); }));
+  const viol = $('#viol');
+  function renderHipaa(){
+    const t = tiers[tierIdx], n = Number(viol.value);
+    $('#violOut').textContent = n + (n === 1 ? ' violation' : ' violations');
+    const lo = Math.min(t.min*n, t.cap), hi = Math.min(t.max*n, t.cap);
+    const dlo = Math.min(t.min*n, t.dcap), dhi = Math.min(t.max*n, t.dcap);
+    $('#hipaaStats').innerHTML = `
+      <div class="stat"><div class="k">Per violation</div><div class="v">${usd(t.min)} to ${usd(t.max)}</div></div>
+      <div class="stat key"><div class="k">This year, by regulation</div><div class="v">${usd(lo)} to ${usd(hi)}</div></div>
+      <div class="stat"><div class="k">This year, under HHS's 2019 caps</div><div class="v">${usd(dlo)} to ${usd(dhi)}</div></div>`;
+  }
+  viol.addEventListener('input', renderHipaa); renderHipaa();
+
+  /* ---------- Section 3: breach clock ---------- */
+  const disc = $('#disc');
+  const pad = n => String(n).padStart(2,'0');
+  const toLocalInput = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  const addHours = (d,h) => new Date(d.getTime() + h*3600e3);
+  const addDays = (d,n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+  const addBiz = (d,n) => { const x = new Date(d); let k = 0; while (k < n) { x.setDate(x.getDate()+1); const w = x.getDay(); if (w !== 0 && w !== 6) k++; } return x; };
+  const fmtD = d => d.toLocaleString('en-US',{weekday:'short', month:'short', day:'numeric', hour:'numeric', minute:'2-digit'});
+  const clocks = [
+    {rule:'GDPR (EU)', who:'Tell the data protection regulator', due:d => addHours(d,72), label:'72 hours'},
+    {rule:'Card brands (Visa)', who:'Tell your bank and Visa now; findings due', due:d => addBiz(d,3), label:'3 business days'},
+    {rule:'LGPD (Brazil)', who:'Tell the ANPD and the people affected', due:d => addBiz(d,3), label:'3 business days'},
+    {rule:'SEC (U.S. public companies)', who:'File a Form 8-K once judged material', due:d => addBiz(d,4), label:'4 business days'},
+    {rule:'California', who:'Tell affected California residents', due:d => addDays(d,30), label:'30 days'},
+    {rule:'HIPAA (U.S.)', who:'Tell the people affected', due:d => addDays(d,60), label:'60 days'}
+  ];
+  function renderClock(){
+    const d = disc.value ? new Date(disc.value) : new Date();
+    if (isNaN(d)) return;
+    const items = clocks.map(c => ({...c, at:c.due(d)}));
+    const span = Math.max(...items.map(i => i.at - d));
+    const week = 7*864e5;
+    $('#deadlines').innerHTML = items.map(i => {
+      const ms = i.at - d, soon = ms <= week, w = Math.max(1.5, ms/span*100);
+      return `<div class="dl${soon ? ' soon' : ''}"><div><span class="rule">${i.rule}</span><span class="who">${i.who}</span></div><div class="bar"><i style="width:${w}%"></i></div><div class="when">${fmtD(i.at)}<span class="status">${i.label}</span></div></div>`;
+    }).join('');
+    const first = items.reduce((a,b) => a.at < b.at ? a : b);
+    const weekend = [0,5,6].includes(d.getDay());
+    const fewest = Math.round((first.at - d)/3600e3);
+    $('#clockAnswer').innerHTML = `Your first deadline is <strong>${fmtD(first.at)}</strong>, ${fewest} hours from discovery.` + (weekend ? ' A breach found near the weekend still runs the GDPR’s 72-hour clock through Saturday and Sunday.' : '');
+  }
+  disc.addEventListener('input', renderClock);
+  $('#nowBtn').addEventListener('click', () => { disc.value = toLocalInput(new Date()); renderClock(); });
+  $('#friBtn').addEventListener('click', () => { const n = new Date(); const x = addDays(n, (5 - n.getDay() + 7) % 7); x.setHours(17,0,0,0); disc.value = toLocalInput(x); renderClock(); });
+  (function(){ const n = new Date(); const x = addDays(n, (5 - n.getDay() + 7) % 7); x.setHours(17,0,0,0); disc.value = toLocalInput(x); })();
+  renderClock();
+
+  /* ---------- Section 4: fines chart ---------- */
+  const fines = [
+    {co:'Meta (Facebook)', yr:2023, v:1200, why:'Moved EU user data to the U.S.', cat:'transfer', by:'Ireland DPC'},
+    {co:'Amazon', yr:2021, v:746, why:'Ad targeting without valid consent', cat:'ads', by:'Luxembourg CNPD'},
+    {co:'TikTok', yr:2025, v:530, why:'EU user data accessed from China', cat:'transfer', by:'Ireland DPC'},
+    {co:'Instagram (Meta)', yr:2022, v:405, why:'Children’s contact details shown publicly', cat:'kids', by:'Ireland DPC'},
+    {co:'Meta', yr:2023, v:390, why:'Wrong legal basis for personalized ads', cat:'ads', by:'Ireland DPC'},
+    {co:'TikTok', yr:2023, v:345, why:'Children’s accounts public by default', cat:'kids', by:'Ireland DPC'},
+    {co:'LinkedIn', yr:2024, v:310, why:'Wrong legal basis for ad targeting', cat:'ads', by:'Ireland DPC'},
+    {co:'Uber', yr:2024, v:290, why:'Moved driver data to the U.S.', cat:'transfer', by:'Dutch AP'},
+    {co:'Meta (Facebook)', yr:2022, v:265, why:'Scraped user data published online', cat:'breach', by:'Ireland DPC'},
+    {co:'Meta (Facebook)', yr:2024, v:251, why:'2018 security breach', cat:'breach', by:'Ireland DPC'}
+  ];
+  const cats = [{k:'all', n:'All ten'},{k:'transfer', n:'Data moved abroad'},{k:'ads', n:'Ads and consent'},{k:'kids', n:'Children’s data'},{k:'breach', n:'Breach or leak'}];
+  let cat = 'all';
+  $('#cats').innerHTML = cats.map(c => `<button class="chip" data-k="${c.k}" aria-pressed="${c.k===cat}">${c.n}</button>`).join('');
+  document.querySelectorAll('#cats .chip').forEach(b => b.addEventListener('click', () => { cat = b.dataset.k; document.querySelectorAll('#cats .chip').forEach(x => x.setAttribute('aria-pressed', String(x===b))); drawFines(); }));
+  const svg = $('#fineChart'), tip = $('#tip');
+  const total = fines.reduce((s,f) => s+f.v, 0);
+  const fm = v => v >= 1000 ? '€' + (v/1000).toFixed(1) + 'B' : '€' + v + 'M';
+  function drawFines(){
+    const W = 760, x0 = 250, wide = 410, step = 40, H = fines.length*step + 16;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.style.minWidth = '560px';
+    const max = Math.max(...fines.map(f => f.v));
+    let s = `<line x1="${x0}" x2="${x0}" y1="4" y2="${H-12}" stroke="var(--line)"/>`;
+    fines.forEach((f,i) => {
+      const y = 6 + i*step, on = cat === 'all' ? f.cat === 'breach' : f.cat === cat, dim = cat !== 'all' && !on;
+      const w = f.v/max*wide, col = on ? 'var(--accent)' : 'var(--bar)';
+      s += `<g class="fr" data-i="${i}" style="opacity:${dim ? .35 : 1};cursor:default">
+        <rect x="0" y="${y-4}" width="${W}" height="${step-2}" fill="transparent"/>
+        <text x="0" y="${y+12}" font-size="14" font-weight="600" fill="var(--fg)">${f.co}, ${f.yr}</text>
+        <text x="0" y="${y+29}" font-size="12.5" fill="var(--muted)">${f.why}</text>
+        <rect x="${x0}" y="${y+4}" width="${w}" height="22" rx="3" fill="${col}"/>
+        <text x="${x0+w+8}" y="${y+20}" font-size="14" font-family="IBM Plex Mono, monospace" fill="var(--fg)">${fm(f.v)}</text></g>`;
+    });
+    svg.innerHTML = s;
+    const sel = cat === 'all' ? fines.filter(f => f.cat === 'breach') : fines.filter(f => f.cat === cat);
+    const sum = sel.reduce((a,f) => a+f.v, 0), label = cats.find(c => c.k === (cat === 'all' ? 'breach' : cat)).n.toLowerCase();
+    $('#finesAnswer').innerHTML = `${cat === 'all' ? 'Highlighted: breach or leak. ' : ''}<strong>${fm(sum)}</strong> of the ${fm(total)} total (${Math.round(sum/total*100)}%) came from ${sel.length} ${sel.length === 1 ? 'fine' : 'fines'} for ${label}.`;
+    svg.querySelectorAll('.fr').forEach(g => {
+      const f = fines[Number(g.dataset.i)];
+      g.addEventListener('mousemove', e => { tip.hidden = false; tip.innerHTML = `<b>${f.co}, ${f.yr}: ${fm(f.v)}</b><br>${f.why}<br>${f.by}`; tip.style.left = Math.min(e.clientX + 14, innerWidth - 270) + 'px'; tip.style.top = (e.clientY + 14) + 'px'; });
+      g.addEventListener('mouseleave', () => { tip.hidden = true; });
+    });
+  }
+  drawFines();
+
+  /* ---------- Section 5: rules ---------- */
+  const R5 = [
+    {k:'hipaa', n:'HIPAA', title:'HIPAA', sub:'U.S. health information, since 1996', f:[['Covers','Health plans, providers and clearinghouses, plus every vendor that handles health data for them'],['Enforced by','HHS Office for Civil Rights, state attorneys general, and the Department of Justice for crimes'],['Maximum penalty','$73,011 per violation and $2.19 million a year per provision; criminal penalties up to $250,000 and 10 years'],['Breach clock','Tell the people affected within 60 days; 500 or more people in a state also go to HHS and the media'],['Asks of engineering','A written risk analysis, access controls, audit logs, encryption, and a Business Associate Agreement with every vendor'],['Watch for','A proposed Security Rule update (MFA, encryption, yearly pen tests) is expected to be finalized in 2027']]},
+    {k:'pci', n:'PCI DSS', title:'PCI DSS', sub:'Payment card data, since 2004', f:[['Covers','Any business that stores, processes or sends card data'],['Enforced by','The card brands, through your contract with the bank that processes your cards'],['Maximum penalty','Set by contract: monthly fines, breach costs and, at worst, losing the ability to accept cards'],['Breach clock','Tell your bank and Visa immediately; findings within 3 business days'],['Asks of engineering','Keep card data out of as many systems as possible, quarterly scans, yearly penetration tests, strong access control'],['Watch for','Version 4.0.1’s future-dated rules became mandatory on March 31, 2025']]},
+    {k:'gdpr', n:'GDPR', title:'GDPR', sub:'Personal data of people in the EU, since 2018', f:[['Covers','Any company that handles personal data of people in the EU, wherever the company is based'],['Enforced by','Each EU country’s data protection authority; Ireland leads for most big tech firms'],['Maximum penalty','€20 million or 4% of worldwide annual revenue, whichever is higher'],['Breach clock','Tell the regulator within 72 hours'],['Asks of engineering','A lawful basis for every use of data, privacy by design, deletion and access on request, safeguards for data leaving the EU'],['Watch for','European regulators issued GDPR fines of about €1.2 billion in 2025, and about €7.1 billion since 2018']]},
+    {k:'state', n:'U.S. state laws', title:'U.S. state privacy laws', sub:'California’s CCPA since 2020, and a growing list of states', f:[['Covers','Companies above size thresholds that handle state residents’ personal data'],['Enforced by','The California Privacy Protection Agency and attorneys general; Texas has won the largest settlements'],['Maximum penalty','CCPA: $2,663 per violation, $7,988 if intentional or involving minors; $107 to $799 per person in breach lawsuits'],['Breach clock','California: 30 calendar days to tell residents, starting in 2026'],['Asks of engineering','Opt-outs for selling or sharing data, honoring access and deletion requests, care with location and biometric data'],['Watch for','Texas settled with Meta for $1.4 billion (2024) and Google for $1.375 billion (2025)']]},
+    {k:'lgpd', n:'LGPD', title:'LGPD', sub:'Brazil’s data protection law, in effect since 2020', f:[['Covers','Companies that handle personal data of people in Brazil'],['Enforced by','The ANPD'],['Maximum penalty','2% of revenue in Brazil, capped at R$50 million per violation'],['Breach clock','3 business days to tell the ANPD and the people affected'],['Asks of engineering','Much like GDPR: a legal basis, people’s rights, security, and incident reporting'],['Watch for','The ANPD’s 2024 incident rule set the 3-business-day deadline']]},
+    {k:'aiact', n:'EU AI Act', title:'EU AI Act', sub:'AI systems sold or used in the EU, in force since 2024', f:[['Covers','Companies that build or deploy AI systems in the EU, with duties set by risk level'],['Enforced by','The EU AI Office and national authorities'],['Maximum penalty','€35 million or 7% of revenue for banned practices; €15 million or 3% for most other duties'],['Key dates','Transparency rules since August 2, 2026; high-risk rules from December 2, 2027 (August 2, 2028 for AI inside regulated products)'],['Asks of engineering','Risk management, logging, human oversight and documentation for high-risk systems; disclosure when people talk to AI'],['Watch for','The 2026 Digital Omnibus moved the high-risk dates back']]},
+    {k:'soc', n:'SOC 2 / ISO 27001', title:'SOC 2 and ISO 27001', sub:'Voluntary security attestations and certifications', f:[['Covers','Any company whose customers ask for proof of its security program'],['Enforced by','Nobody but your customers and their procurement teams'],['Maximum penalty','No fine; the cost is deals that stall or never close'],['Breach clock','None of their own; your contracts and the laws above still apply'],['Asks of engineering','Documented controls that run every day, with evidence an auditor can check'],['Watch for','Enterprise security reviews often ask for one of these before a contract is signed']]}
+  ];
+  let rk = 'hipaa';
+  $('#ruleTabs').innerHTML = R5.map(r => `<button class="chip" role="tab" data-k="${r.k}" aria-pressed="${r.k===rk}" aria-selected="${r.k===rk}">${r.n}</button>`).join('');
+  document.querySelectorAll('#ruleTabs .chip').forEach(b => b.addEventListener('click', () => { rk = b.dataset.k; document.querySelectorAll('#ruleTabs .chip').forEach(x => { x.setAttribute('aria-pressed', String(x===b)); x.setAttribute('aria-selected', String(x===b)); }); drawRule(); }));
+  function drawRule(){
+    const r = R5.find(x => x.k === rk);
+    $('#ruleCard').innerHTML = `<h3>${r.title}</h3><p class="sub">${r.sub}</p><dl class="facts">${r.f.map(([k,v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
+  }
+  drawRule();
+})();
+</script>
+
+</body>
+</html>
